@@ -49,7 +49,8 @@ module.exports = function (content) {
         html = content;
     }
 
-    return "var html = " + html + ";\n" +
+    return "var path = '"+jsesc(filePath)+"';\n" +		 +    return "var html = " + html + ";\n" +
+        "var html = " + html + ";\n" +
         (requireAngular ? "var angular = require('angular');\n" : "var mod = window.") +
         "angular.module('" + jsesc(filePath) + "').run(['$templateCache', function(c) { c.put(path, html) }]);\n" +
         "module.exports = mod;";
