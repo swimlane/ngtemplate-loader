@@ -51,8 +51,8 @@ module.exports = function (content) {
 
     return "var path = '"+jsesc(filePath)+"';\n" +
         "var html = " + html + ";\n" +
-        (requireAngular ? "var angular = require('angular');\n" : "var mod = window.") +
-        "angular.module('" + jsesc(filePath) + "').run(['$templateCache', function(c) { c.put(path, html) }]);\n" +
+        (requireAngular ? "var angular = require('angular';\n" : "var mod = window.") +
+        "angular.module(path, []).run(['$templateCache', function(c) { c.put(path, html) }]);\n" +
         "module.exports = mod;";
 
     function findQuote(content, backwards) {
